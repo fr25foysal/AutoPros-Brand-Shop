@@ -11,7 +11,7 @@ console.log(dark);
             
             <NavBar></NavBar>
             {/* <h2 className="w-50 h-20 bg-yellow dark:bg-dark-bg"></h2> */}
-            <h2>Main ``</h2>
+            
             <Outlet></Outlet>
         </div>
     );

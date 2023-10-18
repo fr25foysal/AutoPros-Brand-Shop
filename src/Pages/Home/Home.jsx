@@ -1,9 +1,29 @@
+import { Link } from "react-router-dom";
+import PrimaryBtn from "../../Components/Button/PrimaryBtn";
 
 const Home = () => {
     return (
-        <div>
-            <h2>Home Page</h2>
+      <div>
+        <div
+          className="hero min-h-screen"
+          style={{
+            backgroundImage:
+              "url(/images/banner.jpg)",
+          }}
+        >
+          <div className="hero-overlay bg-dark-bg bg-opacity-60"></div>
+          <div className="hero-content text-[#fff] text-center ">
+            <div className="max-w-md">
+              <h1 className="mb-5 text-5xl font-bold">Welcome to <br></br>-AutoPros-</h1>
+              <p className="mb-5">
+              From Sleek Sedans to Powerful SUVs, We have Got Your Perfect Ride. Explore the Latest Models, Expert Reviews, and Unbeatable Deals.
+              </p>
+              <Link to={'/'}><PrimaryBtn text={'Get Started'}></PrimaryBtn></Link>
+              
+            </div>
+          </div>
         </div>
+      </div>
     );
 };
 

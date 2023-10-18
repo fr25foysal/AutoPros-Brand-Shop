@@ -49,8 +49,8 @@ const NavBar = () => {
       </>
     );
     return (
-      <div className="class">
-        <div className="navbar dark:bg-dark-bg bg-base-100">
+      <div className="dark:bg-dark-bg bg-base-100">
+        <div className="navbar max-w-7xl mx-auto">
           <div className="navbar-start">
             <div className="dropdown">
               <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -84,7 +84,7 @@ const NavBar = () => {
             <ul className=" menu-horizontal text-base gap-x-4">{liItems}</ul>
           </div>
           <div className="navbar-end gap-x-3">
-            <div className='text-3xl dark:text-[#fff]' onClick={handleTheme}>
+            <div className='text-3xl dark:text-[#fff] transition duration-200 ease-out hover:ease-in' onClick={handleTheme}>
               {dark? <MdOutlineDarkMode></MdOutlineDarkMode> : <MdLightMode></MdLightMode>}
             </div>
 
