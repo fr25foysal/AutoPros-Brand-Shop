@@ -12,9 +12,9 @@ const SignIn = () => {
     }
     return (
       <div className="bg-[url(/images/loginBg.jpg)] bg-error bg-cover bg-center">
-        <div className="grid justify-center min-h-screen pt-16">
-          <div className=" relative flex h-fit  w-96 flex-col rounded-xl dark:bg-dark-bg dark:text-white bg-white bg-clip-border text-gray-700">
-            <div className=" my-6">
+        <div className="grid justify-center min-h-screen py-16">
+          <div className=" relative flex h-fit  w-96 flex-col rounded-sm dark:bg-dark-bg dark:text-white bg-white bg-clip-border text-gray-700">
+            <div className="mt-8">
               <h3 className="block text-3xl text-center font-semibold leading-snug tracking-normal antialiased">
                 Sign In
               </h3>
@@ -115,7 +115,7 @@ const SignIn = () => {
                   {"Don't have an account?"}
                   <Link
                     className="font-semibold hover:text-yellow ml-1 transition-colors text-blue-700"
-                    to={"/register"}
+                    to={"/sign-up"}
                   >
                     Sign Up
                   </Link>
