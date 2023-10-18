@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 export const useProvider = createContext(null)
 const UniProvider = ({children}) => {
-    const [dark, setDark] = useState(false)
+    const [dark, setDark] = useState(true)
     
    console.log(dark);
     const values = {

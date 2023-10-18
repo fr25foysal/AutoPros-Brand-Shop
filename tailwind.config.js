@@ -11,7 +11,9 @@ export default {
       'poppins': "'Poppins', sans-serif"    },
     colors: {
       'yellow': '#FFD717',
-      'dark-bg': '#222831'
+      'dark-bg': '#222831',
+      'white': '#fff',
+      'black': '#000'
     }
   },
   plugins: [require("daisyui")],

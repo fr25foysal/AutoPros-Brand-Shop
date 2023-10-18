@@ -1,5 +1,5 @@
 import { MdOutlineDarkMode,MdLightMode } from 'react-icons/md';
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useProvider } from "../../Provider/UniProvider/UniProvider";
 
@@ -18,7 +18,7 @@ const NavBar = () => {
             
             className={({ isActive, isPending }) =>
               isPending ? "" 
-              : isActive ? "dark:hover:bg-transparent border-[3.2px] py-2 rounded-none px-5 bg-yellow hover:text-[#FFF]  font-medium border-yellow ease-linear duration-200" : "dark:text-[#fff] dark:hover:text-yellow border-[3.2px] py-2 rounded-none px-5  hover:text-yellow font-medium border-yellow ease-linear duration-200"
+              : isActive ? "dark:hover:bg-transparent border-[3.2px] py-2 rounded-none px-5 bg-yellow hover:text-[#FFF] font-medium border-yellow ease-linear duration-200" : "dark:text-[#fff] dark:hover:text-yellow border-[3.2px] py-2 rounded-none px-5  hover:text-yellow font-medium border-yellow ease-linear duration-200"
             }
           >
             Home
@@ -53,7 +53,7 @@ const NavBar = () => {
         <div className="navbar max-w-7xl mx-auto">
           <div className="navbar-start">
             <div className="dropdown">
-              <label tabIndex={0} className="btn btn-ghost lg:hidden">
+              <label tabIndex={0} className="btn text-white btn-ghost lg:hidden">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
@@ -71,7 +71,7 @@ const NavBar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 bg-base-100 w-40"
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 bg-dark-bg w-40"
               >
                 {liItems}
               </ul>
@@ -88,7 +88,7 @@ const NavBar = () => {
               {dark? <MdOutlineDarkMode></MdOutlineDarkMode> : <MdLightMode></MdLightMode>}
             </div>
 
-            <Link className="border-[3.2px] px-4 py-2 bg-yellow text-[#000] hover:bg-transparent hover:text-yellow font-medium border-yellow ease-linear duration-200 ">
+            <Link to={'/sign-in'} className="border-[3.2px] px-4 py-2 bg-yellow text-[#000] hover:bg-transparent hover:text-yellow font-medium border-yellow ease-linear duration-200 ">
               Sign Out
             </Link>
           </div>
