@@ -15,10 +15,9 @@ const NavBar = () => {
         <li className=" ">
           <NavLink
             to={"/"}
-            
             className={({ isActive, isPending }) =>
               isPending ? "" 
-              : isActive ? "dark:hover:bg-transparent border-[3.2px] py-2 rounded-none px-5 bg-yellow hover:text-[#FFF] font-medium border-yellow ease-linear duration-200" : "dark:text-[#fff] dark:hover:text-yellow border-[3.2px] py-2 rounded-none px-5  hover:text-yellow font-medium border-yellow ease-linear duration-200"
+              : isActive ? "dark:hover:bg-transparent border-[3.2px] py-2 rounded-none px-5 bg-yellow hover:text-[#FFF]  font-medium border-yellow ease-linear duration-200" : "dark:text-[#fff] dark:hover:text-yellow border-[3.2px] py-2 rounded-none px-5  hover:text-yellow font-medium border-yellow ease-linear duration-200"
             }
           >
             Home

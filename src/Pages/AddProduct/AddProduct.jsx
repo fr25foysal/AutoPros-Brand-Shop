@@ -1,10 +1,37 @@
 const AddProduct = () => {
+    const handleSubmit = e =>{
+        e.preventDefault()
+        const form = e.target
+        const name = form.name.value 
+        const image = form.image.value 
+        const description = form.description.value 
+        const brand = form.brand.value 
+        const type = form.type.value 
+        const price = form.price.value 
+        const rating = form.rating.value 
+
+        const carData = {name,image,description,brand,type,price,rating}
+
+        console.log(carData);
+
+        fetch('http://localhost:5001/cars',{
+            method:'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(carData)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            console.log(data);
+        })
+    }
     return (
       <div className="dark:bg-second-dark-bg dark:text-white py-14 px-[5%]">
         <div className="border-2 max-w-5xl mx-auto p-10 rounded-sm">
             <h2 className="text-4xl font-semibold text-center">Add Product</h2>
             <div className="divider h-1 mt-1 bg-yellow w-28 mx-auto"></div> 
-        <form className="pt-5">
+        <form onSubmit={handleSubmit} className="pt-5">
           <div className="relative z-0 w-full mb-6 group">
             <input
               type="text"
@@ -40,7 +67,7 @@ const AddProduct = () => {
           <div className="relative z-0 w-full mb-6 group">
             <input
               type="text"
-              name="short-description"
+              name="description"
               id="floating_repeat_password"
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
@@ -90,7 +117,7 @@ const AddProduct = () => {
           <div className="grid md:grid-cols-2 md:gap-6">
             <div className="relative z-0 w-full mb-6 group">
               <input
-                type="tel"
+                type="number"
                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 name="price"
                 id="floating_phone"
@@ -118,7 +145,7 @@ const AddProduct = () => {
                 htmlFor="floating_company"
                 className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
-                Rating (Ex. 9/10)
+                Rating (Ex. 4.9/5)
               </label>
             </div>
           </div>
