@@ -101,13 +101,13 @@ const SignIn = () => {
                 </div>
                 <div className="divider">OR</div>
                 <div className="flex">
-                  <a
+                  <button
                     // onClick={handleGoogleLogin}
                     className="flex justify-center border-[3.2px] rounded-none hover:bg-transparent hover:text-yellow  border-yellow ease-linear duration-200 w-full py-3 px-6 text-center align-middle font-bold uppercase"
                   >
                     <FaGoogle className="text-xl mr-3 "></FaGoogle> Continue
                     with google
-                  </a>
+                  </button>
                 </div>
                 <p className="text-red-600 mt-3 text-center"></p>
 

@@ -13,7 +13,8 @@ export default {
       'yellow': '#FFD717',
       'dark-bg': '#222831',
       'white': '#fff',
-      'black': '#000'
+      'black': '#000',
+      'second-dark-bg': '#352F44'
     }
   },
   plugins: [require("daisyui")],

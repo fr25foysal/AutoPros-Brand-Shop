@@ -13,20 +13,21 @@ const SignUp = () => {
     return (
       <div className="bg-[url(/images/loginBg.jpg)] bg-error bg-cover bg-center">
         <div className="grid justify-center py-14 dark:text-white rounded-sm">
-          <div className="relative flex flex-col dark:bg-dark-bg bg-white shadow-md px-6 py-4">
+          <div className="relative flex flex-col dark:bg-dark-bg bg-white shadow-md px-6 py-10">
             <div className="flex">
-              <a
+              <button
                 // onClick={handleGoogleLogin}
                 className="flex justify-center border-[3.2px] rounded-none hover:bg-transparent hover:text-yellow  border-yellow ease-linear duration-200 w-full py-3 px-6 text-center align-middle font-bold uppercase"
               >
                 <FaGoogle className="text-xl mr-3 "></FaGoogle> Continue with
                 google
-              </a>
+              </button>
             </div>
             <div className="divider w-1/2 mx-auto">OR</div>
             <h4 className="block text-center  text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
               Enter your details to register.
             </h4>
+            <div className="divider h-1 mt-1 bg-yellow w-28 mx-auto"></div> 
             <p className="mt-1 text-center block  text-base font-normal leading-relaxed text-gray-700 antialiased"></p>
 
             <form

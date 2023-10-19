@@ -14,7 +14,7 @@ const Home = () => {
           <div className="hero-overlay bg-dark-bg bg-opacity-60"></div>
           <div className="hero-content text-[#fff] text-center ">
             <div className="max-w-md">
-              <h1 className="mb-5 text-5xl font-bold">Welcome to <br></br>-AutoPros-</h1>
+              <h1 className="mb-5 text-5xl font-bold">Fly on your way <br></br> <span className="text-yellow ">with AutoPros</span> </h1>
               <p className="mb-5">
               From Sleek Sedans to Powerful SUVs, We have Got Your Perfect Ride. Explore the Latest Models, Expert Reviews, and Unbeatable Deals.
               </p>
