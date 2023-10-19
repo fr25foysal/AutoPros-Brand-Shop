@@ -1,8 +1,11 @@
 
 const SingleBrand = ({car}) => {
-    const {name,brand,image,type,price,short_description,rating}= car
+    const {name,brand,image,type,price,rating}= car
+
     return (
       <div>
+        
+
         <div className="flex  hover:bg-transparent flex-col rounded-sm  text-dark-bg">
           <div className="h-96 overflow-hidden rounded-sm rounded-b-none ">
             <img src={image} alt={name} />
@@ -28,7 +31,7 @@ const SingleBrand = ({car}) => {
               <h4 className="block  text-2xl  font-semibold">{type}</h4>
             </div>
             <div className="flex items-center justify-between p-6">
-            <button className="border-[3.2px] px-4 py-2 bg-dark-bg text-white hover:bg-transparent hover:text-yellow font-medium dark:border-white hover:border-yellow ease-linear duration-200 ">
+              <button className="border-[3.2px] px-4 py-2 bg-dark-bg text-white hover:bg-transparent hover:text-yellow font-medium dark:border-white hover:border-yellow ease-linear duration-200 ">
                 Details
               </button>
               <button className="border-[3.2px] px-4 py-2 bg-dark-bg text-white hover:bg-transparent hover:text-yellow font-medium dark:border-white hover:border-yellow ease-linear duration-200 ">
