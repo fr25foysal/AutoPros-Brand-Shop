@@ -3,6 +3,7 @@ import NavBar from "../../Components/NavBar/NavBar";
 import { useContext } from "react";
 import { useProvider } from "../../Provider/UniProvider/UniProvider";
 import Footer from "../../Components/Footer/Footer";
+import { Toaster } from "react-hot-toast";
 
 const MainLayout = () => {
     const {dark} = useContext(useProvider)
@@ -15,6 +16,7 @@ console.log(dark);
             
             <Outlet></Outlet>
             <Footer></Footer>
+            <Toaster></Toaster>
         </div>
     );
 };

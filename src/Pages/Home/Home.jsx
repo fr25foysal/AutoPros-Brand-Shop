@@ -32,14 +32,14 @@ const Home = () => {
         </div>
         {/* Brands Section */}
         <div className="dark:bg-second-dark-bg dark:text-white">
-          <div className="max-w-7xl mx-auto py-16">
+          <div className="max-w-7xl mx-auto py-16 px-5">
             <div className="pb-10">
               <h2 className="text-4xl font-semibold text-center">
                 Collabed Brands
               </h2>
-              <div className="divider h-1 mt-1 bg-yellow w-28 mx-auto"></div>
+              <div className="divider h-1 mt-1 bg-yellow w-28 mx-auto "></div>
             </div>
-            <div className="grid grid-cols-3 gap-5">
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
               {
                 brands.map(brand => <HomeBrand key={brand._id} colBrand={brand}></HomeBrand>)
               }

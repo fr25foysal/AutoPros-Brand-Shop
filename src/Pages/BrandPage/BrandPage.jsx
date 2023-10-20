@@ -78,7 +78,7 @@ const BrandPage = () => {
               </h2>
               <div className="divider h-1 mt-1 bg-yellow w-36 mx-auto"></div>
             </div>
-            <div className="grid grid-cols-2 gap-5">
+            <div className="grid lg:grid-cols-2 gap-5 gap-y-12">
               {cars.map((car) => (
                 <SingleBrand key={car._id} car={car}></SingleBrand>
               ))}

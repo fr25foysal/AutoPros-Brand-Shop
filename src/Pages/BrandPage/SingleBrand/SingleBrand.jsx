@@ -7,7 +7,7 @@ const SingleBrand = ({car}) => {
         
 
         <div className="flex  hover:bg-transparent flex-col rounded-sm  text-dark-bg">
-          <div className="h-96 overflow-hidden rounded-sm rounded-b-none ">
+          <div className="lg:h-96 overflow-hidden rounded-sm rounded-b-none ">
             <img src={image} alt={name} />
           </div>
           <div className="border-4 rounded-t-none bg-yellow dark:hover:text-white transition-colors duration-200 hover:bg-transparent rounded-sm border-yellow">

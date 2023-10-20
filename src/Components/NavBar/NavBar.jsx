@@ -70,7 +70,7 @@ const NavBar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 bg-dark-bg w-40"
+                className="menu z-10 menu-sm dropdown-content mt-3 p-2 bg-dark-bg w-40"
               >
                 {liItems}
               </ul>

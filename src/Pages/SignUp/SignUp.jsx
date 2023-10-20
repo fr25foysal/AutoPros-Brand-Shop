@@ -1,14 +1,43 @@
 import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash,FaGoogle } from 'react-icons/fa';
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useProvider } from "../../Provider/UniProvider/UniProvider";
+
 
 const SignUp = () => {
+  const {createUser,successNotify,googleSign} = useContext(useProvider)
     const [show, setShow] = useState(true)
     const handlePassShow=()=>{
         setShow(!show)
     }
 
+    const handleGoogleLogin= ()=>{
+      googleSign()
+      .then(data=>{
+        console.log(data.user);
+        successNotify('SignUp Successful')
+      })
+      .catch(e=>console.error(e.message))
+    }
+
     const handleSubmit= e =>{
+      e.preventDefault()
+      const form = e.target
+      const name = form.name.value
+      const photo = form.photo.value
+      const email = form.email.value
+      const password = form.password.value
+
+      const signUpData = {name,photo,email,password}
+
+      // console.log(signUpData);
+
+      createUser(email,password)
+      .then(data=>{
+        console.log(data.user);
+        successNotify('SignUp Successful')
+      })
+      .catch(e=>console.error(e))
     }
     return (
       <div className="bg-[url(/images/loginBg.jpg)] bg-error bg-cover bg-center">
@@ -16,7 +45,7 @@ const SignUp = () => {
           <div className="relative flex flex-col dark:bg-dark-bg bg-white shadow-md px-6 py-10">
             <div className="flex">
               <button
-                // onClick={handleGoogleLogin}
+                onClick={handleGoogleLogin}
                 className="flex justify-center border-[3.2px] rounded-none hover:bg-transparent hover:text-yellow  border-yellow ease-linear duration-200 w-full py-3 px-6 text-center align-middle font-bold uppercase"
               >
                 <FaGoogle className="text-xl mr-3 "></FaGoogle> Continue with
@@ -51,9 +80,9 @@ const SignUp = () => {
                   <input
                     className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3  text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-700 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                     placeholder=" "
-                    name="photoUrl"
                     required
                     type="text"
+                    name= 'photo'
                   />
                   <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-700 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-gray-700 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-gray-700 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                     Photo URL
@@ -77,6 +106,7 @@ const SignUp = () => {
                     className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3  text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-700 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                     placeholder=" "
                     name="password"
+
                     required
                   />
                   {show ? (
@@ -143,7 +173,7 @@ const SignUp = () => {
                     type="submit"
                   >
                     Sign Up
-                  </button>
+              </button>
               </div>
               {/* errr message will be here {errmsg} */}
               <p className="text-red-600 mt-3 text-center"></p>
@@ -159,7 +189,7 @@ const SignUp = () => {
               </p>
             </form>
           </div>
-          {/* <Toaster></Toaster> */}
+          
         </div>
       </div>
     );
