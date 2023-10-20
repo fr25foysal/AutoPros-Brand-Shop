@@ -14,7 +14,7 @@ const AddProduct = () => {
 
         console.log(carData);
 
-        fetch('http://localhost:5001/cars',{
+        fetch('https://autopros-backend.vercel.app/cars',{
             method:'POST',
             headers: {
                 'content-type': 'application/json'

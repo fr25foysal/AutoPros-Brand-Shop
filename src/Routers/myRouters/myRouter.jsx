@@ -9,17 +9,19 @@ import BrandPage from "../../Pages/BrandPage/BrandPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import SingleProduct from "../../Pages/SingleProduct/SingleProduct";
 import UpdateProduct from "../../Pages/UpdateProduct/UpdateProduct";
+import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
       path: '/',
       element: <MainLayout></MainLayout>,
+      errorElement:<ErrorPage></ErrorPage>,
       children: [
         {
           path: '/',
           element: <Home></Home>,
           loader: ()=>{
-            return fetch('http://localhost:5001/brands')
+            return fetch('https://autopros-backend.vercel.app/brands')
           }
         },
         {
@@ -41,12 +43,12 @@ const router = createBrowserRouter([
         {
           path: '/:id',
           element: <BrandPage></BrandPage>,
-          loader: ({params})=> fetch(`http://localhost:5001/${params.id}`)
+          loader: ({params})=> fetch(`https://autopros-backend.vercel.app/${params.id}`)
         },
         {
           path: '/:brand/:name',
           element: <PrivateRoute><SingleProduct></SingleProduct></PrivateRoute> ,
-          loader: ({params})=> fetch(`http://localhost:5001/${params.brand}/${params.name}`)
+          loader: ({params})=> fetch(`https://autopros-backend.vercel.app/${params.brand}/${params.name}`)
         },
         {
           path: '/update/:brand/:Uname',

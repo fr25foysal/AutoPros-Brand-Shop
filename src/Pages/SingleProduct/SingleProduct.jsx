@@ -19,16 +19,16 @@ const SingleProduct = () => {
             {/* <img className="w-full" src={image} alt={name} /> */}
           </div>
           <div className="border-4 rounded-t-none bg-yellow dark:hover:text-white transition-colors duration-200 hover:bg-transparent rounded-sm border-yellow">
-            <div className="p-6 flex justify-between">
+            <div className="p-6">
               <div>
-                <h4 className="block uppercase text-5xl font-semibold ">
+                <h4 className="block uppercase text-4xl font-semibold ">
                   {brand} : {name}
                 </h4>
                 {/* <div className="divider h-1 mt-1 dark:bg-white bg-dark-bg w-20 mx-auto"></div> */}
               </div>
 
-              <h4 className="block text-right uppercase text-5xl font-semibold ">
-                {price}
+              <h4 className="block mt-6 uppercase text-4xl font-semibold ">
+                Price: {price}
               </h4>
             </div>
             <div className="divider h-1 mt-1 dark:bg-white bg-dark-bg w-[90%] mx-auto"></div>

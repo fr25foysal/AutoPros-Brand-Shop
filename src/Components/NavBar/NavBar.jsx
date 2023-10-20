@@ -69,7 +69,7 @@ const NavBar = () => {
               <label tabIndex={0} className=" text-white lg:hidden">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
+                  className="h-8 w-8"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -102,19 +102,20 @@ const NavBar = () => {
               onClick={handleTheme}
             >
               {dark ? (
-                <MdOutlineDarkMode></MdOutlineDarkMode>
+                <MdOutlineDarkMode className='text-4xl'></MdOutlineDarkMode>
               ) : (
-                <MdLightMode></MdLightMode>
+                <MdLightMode className='text-4xl'></MdLightMode>
               )}
             </div>
-            <div className='content-center'>
+            <div className=''>
               {
               user ? (
-                <div className="avatar pt-2">
-                  <div className="w-10 rounded-full border-2 border-yellow ">
+                <div className="avatar gap-x-2 flex content-center items-center ">
+                  <div className="w-12 h-12 rounded-full border-2 border-yellow ">
                     {/* <FaUserCircle></FaUserCircle> */}
                     {user?.photoURL ? <img src={user.photoURL} /> : <FaUserCircle  className='text-white text-4xl'></FaUserCircle> }
                   </div>
+                  <p className='hidden lg:block border-[3.2px] px-4 py-2 hover:bg-yellow hover:text-[#000] hover:bg-transparent text-yellow font-medium border-yellow ease-linear duration-200'>{user.displayName}</p>
                 </div>
               ) : (
                 ""

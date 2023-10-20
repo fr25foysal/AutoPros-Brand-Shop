@@ -9,6 +9,7 @@ const UniProvider = ({children}) => {
     const [dark, setDark] = useState(true)
     const [loading, setLoading] = useState(true)
     const [user, setuser] = useState(null)
+    const [errMsg,setErrMsg] = useState('')
 
     const successNotify=(text)=> toast.success(text)
 
@@ -71,6 +72,8 @@ const UniProvider = ({children}) => {
         successNotify,
         googleSign,
         logOut,
+        errMsg,
+        setErrMsg
     }
        
     return (

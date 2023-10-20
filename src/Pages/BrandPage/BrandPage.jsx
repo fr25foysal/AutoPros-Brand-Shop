@@ -17,7 +17,7 @@ const BrandPage = () => {
     console.log(sliders)
 
     useEffect(()=>{
-      fetch(`http://localhost:5001/sliders/${id}`)
+      fetch(`https://autopros-backend.vercel.app/sliders/${id}`)
       .then(res=> res.json())
       .then(data=> 
         {console.log(data)

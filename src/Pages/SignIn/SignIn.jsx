@@ -4,15 +4,21 @@ import { useContext, useState } from "react";
 import { useProvider } from "../../Provider/UniProvider/UniProvider";
 
 const SignIn = () => {
-  const {login,successNotify,googleSign } = useContext(useProvider)
-
+  const {login,successNotify,googleSign,errMsg, setErrMsg } = useContext(useProvider)
+  
     const [show, setShow] = useState(true)
     const navigate = useNavigate()
     const handlePassShow=()=>{
         setShow(!show)
     }
 
+    // Clear Set Error
+    const handleClearErr =()=>{
+      setErrMsg('')
+    }
+
     const handleGoogleLogin= ()=>{
+      setErrMsg('')
       googleSign()
       .then(data=>{
         console.log(data.user);
@@ -20,10 +26,11 @@ const SignIn = () => {
         successNotify('SignUp Successful')
         navigate('/')
       })
-      .catch(e=>console.error(e.message))
+      .catch(e=>setErrMsg(e.message))
     }
 
     const handleSubmit =(e) =>{
+      setErrMsg('')
       e.preventDefault()
       const form = e.target 
       const email = form.email.value
@@ -36,7 +43,7 @@ const SignIn = () => {
         navigate('/')
       })
       .catch(e=>{
-        console.error(e);
+       setErrMsg(e.message);
       })
 
     }
@@ -121,6 +128,7 @@ const SignIn = () => {
                 </div>
               </div>
               <div className="p-6 pt-0">
+             
                 <div className="form-control">
                   <button
                     className="border-[3.2px] rounded-none bg-yellow hover:bg-transparent hover:text-yellow  border-yellow ease-linear duration-200 w-full py-3 px-6 text-center align-middle font-bold uppercase"
@@ -128,6 +136,7 @@ const SignIn = () => {
                   >
                     Sign In
                   </button>
+                  <p className="text-[#ff5858] mt-3 text-center">{errMsg}</p>
                 </div>
                 <div className="divider">OR</div>
                 <div className="flex">
@@ -144,6 +153,7 @@ const SignIn = () => {
                 <p className="mt-4 block text-center  text-base font-normal leading-relaxed text-gray-700 antialiased">
                   {"Don't have an account?"}
                   <Link
+                  onClick={handleClearErr}
                     className="font-semibold hover:text-yellow ml-1 transition-colors text-blue-700"
                     to={"/sign-up"}
                   >

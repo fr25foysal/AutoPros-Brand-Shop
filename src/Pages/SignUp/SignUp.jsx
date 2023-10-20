@@ -5,7 +5,7 @@ import { useProvider } from "../../Provider/UniProvider/UniProvider";
 
 
 const SignUp = () => {
-  const {createUser,successNotify,googleSign,updateUser} = useContext(useProvider)
+  const {createUser,successNotify,googleSign,updateUser,errMsg,setErrMsg} = useContext(useProvider)
     const [show, setShow] = useState(true)
     const navigate = useNavigate()
     const handlePassShow=()=>{
@@ -13,6 +13,7 @@ const SignUp = () => {
     }
 
     const handleGoogleLogin= ()=>{
+      setErrMsg('')
       googleSign()
       .then(data=>{
         console.log(data.user);
@@ -20,10 +21,11 @@ const SignUp = () => {
         successNotify('SignUp Successful')
         navigate('/')
       })
-      .catch(e=>console.error(e.message))
+      .catch(e=>setErrMsg(e.message))
     }
 
     const handleSubmit= e =>{
+      setErrMsg('')
       e.preventDefault()
       const form = e.target
       const name = form.name.value
@@ -31,18 +33,33 @@ const SignUp = () => {
       const email = form.email.value
       const password = form.password.value
 
-      // const signUpData = {name,photo,email,password}
-
-      // console.log(signUpData);
+      if (password.length < 6) {
+        return setErrMsg("Password can't be less than 6 characters")
+      }
+      else if (!/^(?=.*?[A-Z])/.test(password)) {
+      setErrMsg( "Password must contain at least 1 uppercase letter")
+      return
+      }
+      else if (!/.*?[#?!@$%^&*-]/.test(password)) {
+        return setErrMsg('Password must contain at least 1 special characters')
+      }
 
       createUser(email,password)
       .then(data=>{
         console.log(data.user);
         updateUser(name,photo)
-        successNotify('SignUp Successful')
-        navigate('/')
+        .then(()=>{
+          successNotify('SignUp Successful')
+           navigate('/')
+        })
+        .catch(e=> setErrMsg(e.message))
       })
-      .catch(e=>console.error(e))
+      .catch(e=>setErrMsg(e.message))
+    }
+
+    // Clear Set Error
+    const handleClearErr =()=>{
+      setErrMsg('')
     }
     return (
       <div className="bg-[url(/images/loginBg.jpg)] bg-error bg-cover bg-center">
@@ -181,11 +198,11 @@ const SignUp = () => {
               </button>
               </div>
               {/* errr message will be here {errmsg} */}
-              <p className="text-red-600 mt-3 text-center"></p>
+              <p className="text-[#ff5858] mt-3 text-center">{errMsg}</p>
 
               <p className="mt-4 block text-center  text-base font-normal leading-relaxed text-gray-700 antialiased">
                 Already have an account?
-                <Link
+                <Link onClick={handleClearErr}
                   className="font-semibold hover:text-yellow ml-1 transition-colors text-blue-700"
                   to={"/sign-in"}
                 >

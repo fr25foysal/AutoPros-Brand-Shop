@@ -17,7 +17,7 @@ const UpdateProduct = () => {
 
         const carData = {name,image,brand,type,price,rating}
 
-        fetch(`http://localhost:5001/cars/${Uname}`,{
+        fetch(`https://autopros-backend.vercel.app/cars/${Uname}`,{
             method:'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -29,8 +29,8 @@ const UpdateProduct = () => {
             console.log(data);
             successNotify('Product Updated')
         })
-
     }
+
     return (
         
         <div className="dark:bg-second-dark-bg dark:text-white py-14 px-[5%]">
