@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../../Firebase/firebase.config";
 import toast from "react-hot-toast";
@@ -11,6 +11,8 @@ const UniProvider = ({children}) => {
     const [user, setuser] = useState(null)
 
     const successNotify=(text)=> toast.success(text)
+
+    
     
     // create user using email & pass
     const createUser=(email,password) =>{
@@ -26,6 +28,7 @@ const UniProvider = ({children}) => {
 
     // Update user Name and photo url
     const UpdateUser =(userName,photo)=> {
+        setLoading(true)
         return updateProfile(auth.currentUser,{
         displayName: userName, 
         photoURL: photo
@@ -35,17 +38,25 @@ const UniProvider = ({children}) => {
     // Google Login
     const googleProvider = new GoogleAuthProvider()
     const googleSign =()=>{
+        setLoading(true)
         return signInWithPopup(auth,googleProvider)
     }
 
+
     // Keep User Logged In
     useEffect(()=>{
-        const unsubscribe = onAuthStateChanged(auth, currentUser=>{
+        const unsubscribe = onAuthStateChanged(auth, currentUser =>{
             setuser(currentUser)
             setLoading(false)
         })
-        return unsubscribe()
+        return ()=> unsubscribe()
     },[])
+
+
+    // LogOut User
+    const logOut =()=>{
+        return signOut(auth)
+    }
 
     // Universal components
     const values = {
@@ -54,11 +65,12 @@ const UniProvider = ({children}) => {
         createUser,
         login,
         loading,
-        updateProfile,
+        UpdateUser,
         user,
         setuser,
         successNotify,
-        googleSign
+        googleSign,
+        logOut,
     }
        
     return (

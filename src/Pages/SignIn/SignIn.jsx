@@ -1,13 +1,43 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash,FaGoogle } from 'react-icons/fa';
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useProvider } from "../../Provider/UniProvider/UniProvider";
 
 const SignIn = () => {
+  const {login,successNotify,googleSign } = useContext(useProvider)
+
     const [show, setShow] = useState(true)
+    const navigate = useNavigate()
     const handlePassShow=()=>{
         setShow(!show)
     }
-    const handleSubmit =() =>{
+
+    const handleGoogleLogin= ()=>{
+      googleSign()
+      .then(data=>{
+        console.log(data.user);
+        
+        successNotify('SignUp Successful')
+        navigate('/')
+      })
+      .catch(e=>console.error(e.message))
+    }
+
+    const handleSubmit =(e) =>{
+      e.preventDefault()
+      const form = e.target 
+      const email = form.email.value
+      const password = form.password.value
+
+      login(email,password)
+      .then(data=>{
+        console.log(data);
+        successNotify('SignIn Succesful')
+        navigate('/')
+      })
+      .catch(e=>{
+        console.error(e);
+      })
 
     }
     return (
@@ -102,7 +132,7 @@ const SignIn = () => {
                 <div className="divider">OR</div>
                 <div className="flex">
                   <button
-                    // onClick={handleGoogleLogin}
+                    onClick={handleGoogleLogin}
                     className="flex justify-center border-[3.2px] rounded-none hover:bg-transparent hover:text-yellow  border-yellow ease-linear duration-200 w-full py-3 px-6 text-center align-middle font-bold uppercase"
                   >
                     <FaGoogle className="text-xl mr-3 "></FaGoogle> Continue

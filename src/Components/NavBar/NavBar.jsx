@@ -2,13 +2,27 @@ import { MdOutlineDarkMode,MdLightMode } from 'react-icons/md';
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useProvider } from "../../Provider/UniProvider/UniProvider";
+import { FaUserCircle } from 'react-icons/fa';
 
 const NavBar = () => {
+
+    const {user,logOut,successNotify,loading} = useContext(useProvider)
+   console.log(user);
     const {dark,setDark} = useContext(useProvider)
     const handleTheme=()=>{
         setDark(!dark)
     }
     
+    const handleLogOut = () =>{
+      logOut()
+      .then(data =>{
+        console.log(data)
+        successNotify('User Logged Out')
+      })
+      .catch(e=>console.error(e))
+    }
+
+ 
 
     const liItems = (
       <>
@@ -52,7 +66,7 @@ const NavBar = () => {
         <div className="navbar max-w-7xl mx-auto">
           <div className="navbar-start">
             <div className="dropdown">
-              <label tabIndex={0} className="btn text-white btn-ghost lg:hidden">
+              <label tabIndex={0} className=" text-white lg:hidden">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
@@ -82,14 +96,49 @@ const NavBar = () => {
           <div className="navbar-center hidden lg:flex">
             <ul className=" menu-horizontal text-base gap-x-4">{liItems}</ul>
           </div>
-          <div className="navbar-end gap-x-3">
-            <div className='text-3xl dark:text-[#fff] transition duration-200 ease-out hover:ease-in' onClick={handleTheme}>
-              {dark? <MdOutlineDarkMode></MdOutlineDarkMode> : <MdLightMode></MdLightMode>}
+          <div className="navbar-end lg:justify-end flex justify-between bg-hite md:gap-x-3">
+            <div
+              className="text-3xl dark:text-[#fff] transition duration-200 ease-out hover:ease-in"
+              onClick={handleTheme}
+            >
+              {dark ? (
+                <MdOutlineDarkMode></MdOutlineDarkMode>
+              ) : (
+                <MdLightMode></MdLightMode>
+              )}
+            </div>
+            <div className='content-center'>
+              {
+              user ? (
+                <div className="avatar pt-2">
+                  <div className="w-10 rounded-full border-2 border-yellow ">
+                    {/* <FaUserCircle></FaUserCircle> */}
+                    {user?.photoURL ? <img src={user.photoURL} /> : <FaUserCircle  className='text-white text-4xl'></FaUserCircle> }
+                  </div>
+                </div>
+              ) : (
+                ""
+              )
+              }
             </div>
 
-            <Link to={'/sign-in'} className="border-[3.2px] px-4 py-2 bg-yellow text-[#000] hover:bg-transparent hover:text-yellow font-medium border-yellow ease-linear duration-200 ">
-              Sign Out
-            </Link>
+            <div>
+              {user ? (
+                <button
+                  onClick={handleLogOut}
+                  className="border-[3.2px] px-4 py-2 bg-yellow text-[#000] hover:bg-transparent hover:text-yellow font-medium border-yellow ease-linear duration-200 "
+                >
+                  Sign Out
+                </button>
+              ) : (
+                <Link
+                  to={"/sign-in"}
+                  className="border-[3.2px] px-4 py-2 bg-yellow text-[#000] hover:bg-transparent hover:text-yellow font-medium border-yellow ease-linear duration-200 "
+                >
+                  Sign In
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </div>

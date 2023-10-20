@@ -7,7 +7,7 @@ import { Toaster } from "react-hot-toast";
 
 const MainLayout = () => {
     const {dark} = useContext(useProvider)
-console.log(dark);
+
     return (
         <div className={`font-poppins ${dark && 'dark'}`}>
             

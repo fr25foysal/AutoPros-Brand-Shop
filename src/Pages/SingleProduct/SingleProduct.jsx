@@ -1,15 +1,22 @@
-import { Link } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 
-const SingleBrand = ({car}) => {
-    const {name,brand,image,type,price,rating}= car
-
+const SingleProduct = () => {
+    const {name,image,brand,price,rating,type} = useLoaderData()
+    // console.log(product);
     return (
-      <div>
-        
-
-        <div className="flex  hover:bg-transparent flex-col rounded-sm  text-dark-bg">
-          <div className="lg:h-96 overflow-hidden rounded-sm rounded-b-none ">
-            <img src={image} alt={name} />
+      <div className="dark:bg-second-dark-bg">
+        <div className="flex max-w-7xl mx-auto hover:bg-transparent flex-col rounded-sm  text-dark-bg">
+          <div
+            style={{
+              backgroundImage: `url(${image})`,
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover'
+            }}
+            className="h-[600px] w-full overflow-hidden rounded-sm rounded-b-none "
+          >
+            
+            {/* <img className="w-full" src={image} alt={name} /> */}
           </div>
           <div className="border-4 rounded-t-none bg-yellow dark:hover:text-white transition-colors duration-200 hover:bg-transparent rounded-sm border-yellow">
             <div className="p-6 flex justify-between">
@@ -32,11 +39,8 @@ const SingleBrand = ({car}) => {
               <h4 className="block  text-2xl  font-semibold">{type}</h4>
             </div>
             <div className="flex items-center justify-between p-6">
-              <Link to={`/${brand}/${name}`} className="border-[3.2px] px-4 py-2 bg-dark-bg text-white hover:bg-transparent hover:text-yellow font-medium dark:border-white hover:border-yellow ease-linear duration-200 ">
-                Details
-              </Link>
               <button className="border-[3.2px] px-4 py-2 bg-dark-bg text-white hover:bg-transparent hover:text-yellow font-medium dark:border-white hover:border-yellow ease-linear duration-200 ">
-                Update
+                Add To Cart
               </button>
             </div>
           </div>
@@ -45,4 +49,4 @@ const SingleBrand = ({car}) => {
     );
 };
 
-export default SingleBrand;
+export default SingleProduct;

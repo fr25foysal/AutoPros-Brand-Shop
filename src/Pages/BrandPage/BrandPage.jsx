@@ -61,11 +61,7 @@ const BrandPage = () => {
             </div>
           </div>
         </div>
-          
             </SwiperSlide> )}
-            
-            
-            
           </Swiper>
           
         </div>
@@ -78,11 +74,20 @@ const BrandPage = () => {
               </h2>
               <div className="divider h-1 mt-1 bg-yellow w-36 mx-auto"></div>
             </div>
-            <div className="grid lg:grid-cols-2 gap-5 gap-y-12">
+            <div>
+            {
+               (cars.length === 0 ) ? <div><h2 className="text-center text-yellow text-3xl">We have not collabed with this brand Yet</h2>
+               
+               </div> 
+               : 
+               <div className="grid lg:grid-cols-2 gap-5 gap-y-12">
               {cars.map((car) => (
                 <SingleBrand key={car._id} car={car}></SingleBrand>
               ))}
             </div>
+              }
+            </div>
+            
           </div>
         </div>
       </div>

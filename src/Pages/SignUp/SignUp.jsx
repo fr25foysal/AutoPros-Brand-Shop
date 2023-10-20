@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash,FaGoogle } from 'react-icons/fa';
 import { useContext, useState } from "react";
 import { useProvider } from "../../Provider/UniProvider/UniProvider";
 
 
 const SignUp = () => {
-  const {createUser,successNotify,googleSign} = useContext(useProvider)
+  const {createUser,successNotify,googleSign,updateUser} = useContext(useProvider)
     const [show, setShow] = useState(true)
+    const navigate = useNavigate()
     const handlePassShow=()=>{
         setShow(!show)
     }
@@ -15,7 +16,9 @@ const SignUp = () => {
       googleSign()
       .then(data=>{
         console.log(data.user);
+        
         successNotify('SignUp Successful')
+        navigate('/')
       })
       .catch(e=>console.error(e.message))
     }
@@ -28,14 +31,16 @@ const SignUp = () => {
       const email = form.email.value
       const password = form.password.value
 
-      const signUpData = {name,photo,email,password}
+      // const signUpData = {name,photo,email,password}
 
       // console.log(signUpData);
 
       createUser(email,password)
       .then(data=>{
         console.log(data.user);
+        updateUser(name,photo)
         successNotify('SignUp Successful')
+        navigate('/')
       })
       .catch(e=>console.error(e))
     }
