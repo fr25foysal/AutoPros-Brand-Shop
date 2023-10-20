@@ -1,7 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 
 const SingleProduct = () => {
-    const {name,image,brand,price,rating,type} = useLoaderData()
+    const {name,image,brand,price,rating,type,short_description} = useLoaderData()
     // console.log(product);
     return (
       <div className="dark:bg-second-dark-bg">
@@ -38,6 +38,7 @@ const SingleProduct = () => {
               </h4>
               <h4 className="block  text-2xl  font-semibold">{type}</h4>
             </div>
+            <p className="p-6 text-xl font-medium">{short_description}</p>
             <div className="flex items-center justify-between p-6">
               <button className="border-[3.2px] px-4 py-2 bg-dark-bg text-white hover:bg-transparent hover:text-yellow font-medium dark:border-white hover:border-yellow ease-linear duration-200 ">
                 Add To Cart

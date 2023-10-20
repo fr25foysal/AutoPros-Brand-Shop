@@ -1,8 +1,22 @@
-# React + Vite
+<h1>Features of the project are noted down below.</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<ul>
 
-Currently, two official plugins are available:
+<li>Users can add products</li>
+<li>Users can update products</li>
+<li>Toast will be shown after successful add/update </li>
+<li>Users can add products to cart and see ,delete </li>
+<li>This project is responsive.</li>
+<li>Users can login</li>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+</ul>
+
+<h1>Thanks for reading</h1>
+
+
+
+<h1>Live Link: </h1>
+<h2>https://autopros-7c6da.web.app/</h2>
+
+
+

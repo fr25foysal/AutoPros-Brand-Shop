@@ -35,9 +35,9 @@ const SingleBrand = ({car}) => {
               <Link to={`/${brand}/${name}`} className="border-[3.2px] px-4 py-2 bg-dark-bg text-white hover:bg-transparent hover:text-yellow font-medium dark:border-white hover:border-yellow ease-linear duration-200 ">
                 Details
               </Link>
-              <button className="border-[3.2px] px-4 py-2 bg-dark-bg text-white hover:bg-transparent hover:text-yellow font-medium dark:border-white hover:border-yellow ease-linear duration-200 ">
+              <Link to={`/update/${brand}/${name}`} className="border-[3.2px] px-4 py-2 bg-dark-bg text-white hover:bg-transparent hover:text-yellow font-medium dark:border-white hover:border-yellow ease-linear duration-200 ">
                 Update
-              </button>
+              </Link>
             </div>
           </div>
         </div>
