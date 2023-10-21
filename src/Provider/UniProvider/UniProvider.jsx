@@ -10,6 +10,8 @@ const UniProvider = ({children}) => {
     const [loading, setLoading] = useState(true)
     const [user, setuser] = useState(null)
     const [errMsg,setErrMsg] = useState('')
+    
+    const [cartProducts, setCartProducts] = useState([])
 
     const successNotify=(text)=> toast.success(text)
     const errorNotify=(text)=> toast.error(text)
@@ -73,7 +75,9 @@ const UniProvider = ({children}) => {
         googleSign,
         logOut,
         errMsg,
-        setErrMsg,errorNotify
+        setErrMsg,errorNotify,
+        cartProducts,
+        setCartProducts
     }
        
     return (
