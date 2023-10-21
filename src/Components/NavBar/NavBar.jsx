@@ -66,7 +66,7 @@ const NavBar = () => {
         <div className="navbar max-w-7xl mx-auto">
           <div className="navbar-start">
             <div className="dropdown">
-              <label tabIndex={0} className=" text-white lg:hidden">
+              <label tabIndex={0} className="text-dark-bg  dark:text-white lg:hidden">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-8 w-8"
@@ -127,7 +127,7 @@ const NavBar = () => {
               {user ? (
                 <button
                   onClick={handleLogOut}
-                  className="border-[3.2px] px-4 py-2 bg-yellow text-[#000] hover:bg-transparent hover:text-yellow font-medium border-yellow ease-linear duration-200 "
+                  className="border-[3.2px] md:px-4 px-2 py-2 bg-yellow text-[#000] hover:bg-transparent hover:text-yellow font-medium border-yellow ease-linear duration-200 "
                 >
                   Sign Out
                 </button>
