@@ -6,8 +6,8 @@ import { FaUserCircle } from 'react-icons/fa';
 
 const NavBar = () => {
 
-    const {user,logOut,successNotify,loading} = useContext(useProvider)
-   console.log(user);
+    const {user,logOut,successNotify} = useContext(useProvider)
+   
     const {dark,setDark} = useContext(useProvider)
     const handleTheme=()=>{
         setDark(!dark)
@@ -111,11 +111,11 @@ const NavBar = () => {
               {
               user ? (
                 <div className="avatar gap-x-2 flex content-center items-center ">
-                  <div className="w-12 h-12 rounded-full border-2 border-yellow ">
+                  <div className="w-12 h-12 rounded-full border-2 border-yellow bg-white">
                     {/* <FaUserCircle></FaUserCircle> */}
-                    {user?.photoURL ? <img src={user.photoURL} /> : <FaUserCircle  className='text-white text-4xl'></FaUserCircle> }
+                    {user?.photoURL ? <img src={user.photoURL} /> : <FaUserCircle  className='text-white text-[45px]'></FaUserCircle> }
                   </div>
-                  <p className='hidden lg:block border-[3.2px] px-4 py-2 hover:bg-yellow hover:text-[#000] hover:bg-transparent text-yellow font-medium border-yellow ease-linear duration-200'>{user.displayName}</p>
+                  <p className='hidden lg:block border-[3.2px] px-4 py-2 hover:bg-yellow hover:text-[#000] hover:bg-transparent text-yellow font-medium border-yellow ease-linear duration-200'>{user?.displayName ? user.displayName : 'User'}</p>
                 </div>
               ) : (
                 ""

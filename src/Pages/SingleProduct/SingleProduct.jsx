@@ -1,8 +1,26 @@
+import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
+import { useProvider } from "../../Provider/UniProvider/UniProvider";
 
 const SingleProduct = () => {
     const {name,image,brand,price,rating,type,short_description} = useLoaderData()
-    // console.log(product);
+    const {user,successNotify,errorNotify} = useContext(useProvider)
+    const email = user.email
+
+    const handleAddtoCart = () =>{
+      const product = {name,price,brand,image,type,email}
+      fetch('https://autopros-backend.vercel.app/cart',{
+        method: "POST",
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(product)
+      })
+      .then(res => res.json())
+      .then(data=>{
+        data.acknowledged ? successNotify('Added to cart') : errorNotify('Something went wrong!')
+      })
+    }
     return (
       <div className="dark:bg-second-dark-bg">
         <div className="flex max-w-7xl mx-auto hover:bg-transparent flex-col rounded-sm  text-dark-bg">
@@ -18,7 +36,7 @@ const SingleProduct = () => {
             
             {/* <img className="w-full" src={image} alt={name} /> */}
           </div>
-          <div className="border-4 rounded-t-none bg-yellow dark:hover:text-white transition-colors duration-200 hover:bg-transparent rounded-sm border-yellow">
+          <div className="border-4 rounded-t-none bg-yellow mb-10 dark:hover:text-white transition-colors duration-200 hover:bg-transparent rounded-sm border-yellow">
             <div className="p-6">
               <div>
                 <h4 className="block uppercase text-4xl font-semibold ">
@@ -40,7 +58,7 @@ const SingleProduct = () => {
             </div>
             <p className="p-6 text-xl font-medium">{short_description}</p>
             <div className="flex items-center justify-between p-6">
-              <button className="border-[3.2px] px-4 py-2 bg-dark-bg text-white hover:bg-transparent hover:text-yellow font-medium dark:border-white hover:border-yellow ease-linear duration-200 ">
+              <button onClick={handleAddtoCart} className="border-[3.2px] px-4 py-2 bg-dark-bg text-white hover:bg-transparent hover:text-yellow font-medium dark:border-white hover:border-yellow ease-linear duration-200 ">
                 Add To Cart
               </button>
             </div>

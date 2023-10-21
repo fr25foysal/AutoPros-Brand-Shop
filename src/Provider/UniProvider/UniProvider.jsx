@@ -12,6 +12,7 @@ const UniProvider = ({children}) => {
     const [errMsg,setErrMsg] = useState('')
 
     const successNotify=(text)=> toast.success(text)
+    const errorNotify=(text)=> toast.error(text)
 
     
     
@@ -30,10 +31,9 @@ const UniProvider = ({children}) => {
     // Update user Name and photo url
     const UpdateUser =(userName,photo)=> {
         setLoading(true)
-        return updateProfile(auth.currentUser,{
-        displayName: userName, 
-        photoURL: photo
-    })
+        return updateProfile(auth.currentUser, {
+            displayName: `${userName}`, photoURL: `${photo}`
+          })
 }
 
     // Google Login
@@ -73,7 +73,7 @@ const UniProvider = ({children}) => {
         googleSign,
         logOut,
         errMsg,
-        setErrMsg
+        setErrMsg,errorNotify
     }
        
     return (

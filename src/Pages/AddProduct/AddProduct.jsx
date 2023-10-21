@@ -1,4 +1,9 @@
+import { useContext } from "react";
+import { useProvider } from "../../Provider/UniProvider/UniProvider";
+
 const AddProduct = () => {
+
+  const {successNotify,errorNotify} = useContext(useProvider)
     const handleSubmit = e =>{
         e.preventDefault()
         const form = e.target
@@ -12,8 +17,6 @@ const AddProduct = () => {
 
         const carData = {name,image,description,brand,type,price,rating}
 
-        console.log(carData);
-
         fetch('https://autopros-backend.vercel.app/cars',{
             method:'POST',
             headers: {
@@ -22,142 +25,145 @@ const AddProduct = () => {
             body: JSON.stringify(carData)
         })
         .then(res => res.json())
-        .then(data =>{
-            console.log(data);
+        .then((data) =>{
+            data.acknowledged ? successNotify('Product has been added') : errorNotify("Can't add product now!")
         })
     }
     return (
       <div className="dark:bg-second-dark-bg dark:text-white py-14 px-[5%]">
         <div className="border-2 max-w-5xl mx-auto p-10 rounded-sm">
-            <h2 className="text-4xl font-semibold text-center">Add Product</h2>
-            <div className="divider h-1 mt-1 bg-yellow w-28 mx-auto"></div> 
-        <form onSubmit={handleSubmit} className="pt-5">
-          <div className="relative z-0 w-full mb-6 group">
-            <input
-              type="text"
-              name="name"
-              id="floating_email"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              placeholder=" "
-              required
-            />
-            <label
-              htmlFor="floating_email"
-              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Product Name
-            </label>
-          </div>
-          <div className="relative z-0 w-full mb-6 group">
-            <input
-              type="text"
-              name="image"
-              id="floating_password"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              placeholder=" "
-              required
-            />
-            <label
-              htmlFor="floating_password"
-              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Product Image
-            </label>
-          </div>
-          <div className="relative z-0 w-full mb-6 group">
-            <input
-              type="text"
-              name="description"
-              id="floating_repeat_password"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              placeholder=" "
-              required
-            />
-            <label
-              htmlFor="floating_repeat_password"
-              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Short Description
-            </label>
-          </div>
-          <div className="grid md:grid-cols-2 md:gap-6">
+          <h2 className="text-4xl font-semibold text-center">Add Product</h2>
+          <div className="divider h-1 mt-1 bg-yellow w-28 mx-auto"></div>
+          <form onSubmit={handleSubmit} className="pt-5">
             <div className="relative z-0 w-full mb-6 group">
               <input
                 type="text"
-                name="brand"
-                id="floating_first_name"
+                name="name"
+                id="floating_email"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 required
               />
               <label
-                htmlFor="floating_first_name"
+                htmlFor="floating_email"
                 className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
-                Brand name
+                Product Name
               </label>
             </div>
             <div className="relative z-0 w-full mb-6 group">
               <input
                 type="text"
-                name="type"
-                id="type"
+                name="image"
+                id="floating_password"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 required
               />
               <label
-                htmlFor="floating_last_name"
+                htmlFor="floating_password"
                 className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
-                Product Type
-              </label>
-            </div>
-          </div>
-          <div className="grid md:grid-cols-2 md:gap-6">
-            <div className="relative z-0 w-full mb-6 group">
-              <input
-                type="number"
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                name="price"
-                id="floating_phone"
-                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                required
-              />
-              <label
-                htmlFor="floating_phone"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                Price
+                Product Image
               </label>
             </div>
             <div className="relative z-0 w-full mb-6 group">
               <input
                 type="text"
-                name="rating"
-                id="floating_company"
+                name="description"
+                id="floating_repeat_password"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 required
               />
               <label
-                htmlFor="floating_company"
+                htmlFor="floating_repeat_password"
                 className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
-                Rating (Ex. 4.9/5)
+                Short Description
               </label>
             </div>
-          </div>
-          <button
-            type="submit"
-            className="border-[3.2px] px-4 py-2 bg-yellow text-[#000] hover:bg-transparent hover:text-yellow font-medium border-yellow ease-linear duration-200"
-          >
-            Submit
-          </button>
-        </form>
+            <div className="grid md:grid-cols-2 md:gap-6">
+              <div className="relative z-0 w-full mb-6 group">
+              <label htmlFor="underline_select" className="sr-only">
+                  Underline select
+                </label>
+                <select
+                  id="underline_select"
+                  name="brand"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                >
+                  <option className="bg-dark-bg" selected>Select Brand</option>
+                  <option className="bg-dark-bg" value="audi">Audi</option>
+                  <option className="bg-dark-bg" value="toyota">Toyota</option>
+                  <option className="bg-dark-bg" value="ford">Ford</option>
+                  <option className="bg-dark-bg" value="bmw">BMW</option>
+                  <option className="bg-dark-bg" value="mercedes-benz">Mercedes-Benz</option>
+                  <option className="bg-dark-bg" value="honda">Honda</option>
+                 
+                </select>
+              </div>
+
+              <div className="relative z-0 w-full mb-6 group">
+              <input
+                  type="text"
+                  name="type"
+                  id="floating_first_name"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                  required
+                />
+                <label
+                  htmlFor="floating_first_name"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >
+                  Product Type
+                </label>
+              </div>
+            </div>
+            <div className="grid md:grid-cols-2 md:gap-6">
+              <div className="relative z-0 w-full mb-6 group">
+                <input
+                  type="number"
+                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                  name="price"
+                  id="floating_phone"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                  required
+                />
+                <label
+                  htmlFor="floating_phone"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >
+                  Price
+                </label>
+              </div>
+              <div className="relative z-0 w-full mb-6 group">
+                <input
+                  type="text"
+                  name="rating"
+                  id="floating_company"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                  required
+                />
+                <label
+                  htmlFor="floating_company"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >
+                  Rating (Ex. 4.9/5)
+                </label>
+              </div>
+            </div>
+            <button
+              type="submit"
+              className="border-[3.2px] px-4 py-2 bg-yellow text-[#000] hover:bg-transparent hover:text-yellow font-medium border-yellow ease-linear duration-200"
+            >
+              Submit
+            </button>
+          </form>
         </div>
-        
       </div>
     );
 };

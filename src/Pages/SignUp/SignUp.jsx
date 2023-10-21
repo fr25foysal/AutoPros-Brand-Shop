@@ -5,7 +5,7 @@ import { useProvider } from "../../Provider/UniProvider/UniProvider";
 
 
 const SignUp = () => {
-  const {createUser,successNotify,googleSign,updateUser,errMsg,setErrMsg} = useContext(useProvider)
+  const {createUser,successNotify,googleSign,UpdateUser,errMsg,setErrMsg} = useContext(useProvider)
     const [show, setShow] = useState(true)
     const navigate = useNavigate()
     const handlePassShow=()=>{
@@ -47,7 +47,7 @@ const SignUp = () => {
       createUser(email,password)
       .then(data=>{
         console.log(data.user);
-        updateUser(name,photo)
+        UpdateUser(name,photo)
         .then(()=>{
           successNotify('SignUp Successful')
            navigate('/')
