@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 const SingleBrand = ({car}) => {
     const {name,brand,image,type,price,rating}= car
@@ -21,8 +22,6 @@ const SingleBrand = ({car}) => {
                 Price: {price}
               </h4>
               </div>
-
-              
             </div>
             <div className="divider h-1 mt-1 dark:bg-white bg-dark-bg w-[90%] mx-auto"></div>
             <div className="flex items-center justify-between p-6">
@@ -51,4 +50,7 @@ const SingleBrand = ({car}) => {
     );
 };
 
+SingleBrand.propTypes = {
+  car: PropTypes.object
+}
 export default SingleBrand;

@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { MdDelete } from 'react-icons/md';
 import { useProvider } from '../../Provider/UniProvider/UniProvider';
@@ -52,5 +52,7 @@ const CartSingle = ({product}) => {
       </div>
     );
 };
-
+CartSingle.propTypes = {
+    product: PropTypes.object
+}
 export default CartSingle;
